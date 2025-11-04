@@ -1,0 +1,10 @@
+[package]
+name = "crab_graph"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+console_error_panic_hook = "0.1.7"
+wasm-bindgen = "0.2.105"
+web-sys = "0.3.82"
+xilem_web = "0.4.0"
