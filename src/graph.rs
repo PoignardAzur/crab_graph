@@ -36,7 +36,7 @@ pub struct Layer {
     pub nodes: Vec<NodeId>,
 }
 
-#[derive(Debug)]
+#[derive(Clone, Copy, Debug)]
 pub struct Edge {
     pub from: NodeId,
     pub to: NodeId,
@@ -80,6 +80,18 @@ impl GraphNode {
             name,
             children: Vec::new(),
             layer: u32::MAX,
+            x: 0.,
+            y: 0.,
+        }
+    }
+}
+
+impl DummyNode {
+    pub fn new(id: NodeId, destination: NodeId, layer: u32) -> Self {
+        Self {
+            id,
+            destination,
+            layer,
             x: 0.,
             y: 0.,
         }
