@@ -63,6 +63,14 @@ impl Graph {
 
         self.nodes.push(GraphNode::new(id, name.to_string()));
     }
+
+    pub fn node(&self, id: NodeId) -> &GraphNode {
+        self.nodes.iter().find(|node| node.id == id).unwrap()
+    }
+
+    pub fn node_mut(&mut self, id: NodeId) -> &mut GraphNode {
+        self.nodes.iter_mut().find(|node| node.id == id).unwrap()
+    }
 }
 
 impl GraphNode {
