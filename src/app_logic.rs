@@ -9,7 +9,7 @@ use xilem_web::svg::peniko::Color;
 use xilem_web::{App, DomFragment, document_body};
 
 use crate::graph::Graph;
-use crate::process_graph::process_graph;
+use crate::process_graph::{fill_layers, layer_graph};
 
 pub struct EdgePath {
     pub path: Vec<(f32, f32)>,
@@ -25,16 +25,12 @@ impl AppState {
         let mut graph = Graph::default();
         graph.add_node(0, "hello", &[]);
         graph.add_node(1, "foo", &[]);
-        graph.add_node(2, "bar", &[]);
-        graph.add_node(3, "stuff", &[]);
+        graph.add_node(2, "bar", &[1]);
+        graph.add_node(3, "stuff", &[2]);
+        graph.add_node(4, "stuff", &[2]);
 
-        // FIXME
-        graph.nodes[0].layer = 0;
-        graph.nodes[1].layer = 0;
-        graph.nodes[2].layer = 0;
-        graph.nodes[3].layer = 1;
-
-        process_graph(&mut graph);
+        layer_graph(&mut graph);
+        fill_layers(&mut graph);
 
         Self { graph }
     }
